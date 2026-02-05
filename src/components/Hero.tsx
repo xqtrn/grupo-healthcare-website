@@ -13,8 +13,11 @@ const stats = [
 export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 animated-gradient pattern-overlay" />
+      {/* Background - Dark teal gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a3d3d] via-[#063030] to-[#042525]" />
+      <div className="absolute inset-0 animated-gradient pattern-overlay opacity-50" />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/20" />
 
       {/* Decorative Elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl floating" />
