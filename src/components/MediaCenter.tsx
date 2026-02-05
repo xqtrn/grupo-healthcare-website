@@ -215,8 +215,8 @@ export default function MediaCenter() {
           className="mb-8"
         >
           {/* Category Filter - Horizontal Scroll on Mobile */}
-          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 pb-4">
-            <div className="flex gap-2 min-w-max">
+          <div className="overflow-x-auto scrollbar-hide pb-4">
+            <div className="flex gap-2 flex-nowrap">
               {categories.map((category) => (
                 <button
                   key={category}

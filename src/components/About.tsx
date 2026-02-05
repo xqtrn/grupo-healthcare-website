@@ -85,19 +85,31 @@ export default function About() {
                   {timeline.map((item, index) => (
                     <motion.div
                       key={item.year}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -30 }}
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.3 + index * 0.15 }}
+                      transition={{
+                        delay: 0.3 + index * 0.15,
+                        duration: 0.5,
+                        ease: [0.22, 1, 0.36, 1]
+                      }}
                       className="relative pl-10"
                     >
-                      {/* Circle Dot */}
-                      <div className="absolute left-0 top-1 w-6 h-6 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full shadow-lg border-4 border-white" />
+                      {/* Circle Dot with pulse animation */}
+                      <motion.div
+                        className="absolute left-0 top-1 w-6 h-6 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full shadow-lg border-4 border-white"
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : {}}
+                        transition={{ delay: 0.4 + index * 0.15, type: "spring", stiffness: 300 }}
+                      />
 
                       {/* Content */}
                       <div>
-                        <span className="inline-block px-3 py-1 bg-teal-50 text-teal-700 rounded-full text-sm font-bold mb-2">
+                        <motion.span
+                          className="inline-block px-3 py-1 bg-teal-50 text-teal-700 rounded-full text-sm font-bold mb-2"
+                          whileHover={{ scale: 1.05 }}
+                        >
                           {item.year}
-                        </span>
+                        </motion.span>
                         <h4 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h4>
                         <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
                       </div>
@@ -188,14 +200,26 @@ export default function About() {
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.7 + index * 0.1 }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 border border-gray-100"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  delay: 0.7 + index * 0.1,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{
+                  y: -8,
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+                }}
+                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 cursor-default"
               >
-                <div className={`w-14 h-14 bg-gradient-to-br ${value.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
+                <motion.div
+                  className={`w-14 h-14 bg-gradient-to-br ${value.color} rounded-xl flex items-center justify-center mb-4 shadow-lg`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
                   <value.icon className="w-7 h-7 text-white" />
-                </div>
+                </motion.div>
                 <h4 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h4>
                 <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
               </motion.div>
