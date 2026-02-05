@@ -17,43 +17,50 @@ const navigation = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const lastScrollY = useRef(0);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       setIsScrolled(currentScrollY > 50);
 
-      // Show header when scrolling up or at top, hide when scrolling down
-      if (currentScrollY < 100) {
-        // Always show at top of page
-        setIsHeaderVisible(true);
-      } else if (currentScrollY < lastScrollY.current) {
-        // Scrolling up - show header
-        setIsHeaderVisible(true);
-      } else if (currentScrollY > lastScrollY.current + 10) {
-        // Scrolling down (with threshold) - hide header
-        setIsHeaderVisible(false);
-        setIsMobileMenuOpen(false); // Close menu when hiding
+      // Only apply show/hide logic on mobile
+      if (window.innerWidth < 1024) {
+        if (currentScrollY < 100) {
+          setIsMobileHeaderVisible(true);
+        } else if (currentScrollY < lastScrollY.current) {
+          setIsMobileHeaderVisible(true);
+        } else if (currentScrollY > lastScrollY.current + 10) {
+          setIsMobileHeaderVisible(false);
+          setIsMobileMenuOpen(false);
+        }
+
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
+        }
+        scrollTimeout.current = setTimeout(() => {
+          setIsMobileHeaderVisible(true);
+        }, 1500);
       }
 
       lastScrollY.current = currentScrollY;
-
-      // Show header after scrolling stops
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-      scrollTimeout.current = setTimeout(() => {
-        setIsHeaderVisible(true);
-      }, 1500);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
@@ -95,17 +102,17 @@ export default function Header() {
       <motion.header
         initial={{ y: 0, opacity: 1 }}
         animate={{
-          y: isHeaderVisible ? 0 : -100,
-          opacity: isHeaderVisible ? 1 : 0,
+          y: isMobile && !isMobileHeaderVisible ? -100 : 0,
+          opacity: isMobile && !isMobileHeaderVisible ? 0 : 1,
         }}
         transition={{
           duration: 0.3,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        className={`fixed lg:sticky top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-lg'
-            : 'bg-white lg:bg-transparent'
+            : 'bg-white'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -234,8 +241,8 @@ export default function Header() {
         </AnimatePresence>
       </motion.header>
 
-      {/* Spacer for fixed header */}
-      <div className="h-16 lg:h-20" />
+      {/* Spacer for fixed header - only on mobile */}
+      <div className="h-16 lg:hidden" />
     </>
   );
 }
