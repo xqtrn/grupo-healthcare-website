@@ -3,28 +3,39 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Target, Eye, Heart, Users, Sparkles, TrendingUp } from 'lucide-react';
+import { Target, Eye, Heart, Users, Sparkles, TrendingUp, MapPin } from 'lucide-react';
+
+const timeline = [
+  { year: '2004', title: 'Fundación', description: 'Iniciamos con la visión de transformar la atención médica en México.' },
+  { year: '2010', title: 'Expansión', description: 'Ampliamos nuestros servicios a nivel nacional.' },
+  { year: '2020', title: 'Innovación Digital', description: 'Lanzamiento de nuestra plataforma digital para profesionales.' },
+  { year: 'Hoy', title: 'Líderes en Innovación', description: 'Referentes en servicios médico-hospitalarios.' },
+];
 
 const values = [
   {
     icon: Heart,
     title: 'Compromiso con el Paciente',
     description: 'Cada individuo merece acceso a servicios de salud de alta calidad.',
+    color: 'from-rose-500 to-pink-500',
   },
   {
     icon: Sparkles,
     title: 'Innovación Constante',
     description: 'Desarrollo continuo de servicios médico-hospitalarios de vanguardia.',
+    color: 'from-amber-500 to-orange-500',
   },
   {
     icon: Users,
     title: 'Comunidad Médica',
     description: 'Espacio para compartir, discutir y contribuir con la comunidad de doctores.',
+    color: 'from-blue-500 to-cyan-500',
   },
   {
     icon: TrendingUp,
     title: 'Calidad y Transparencia',
     description: 'Aseguramos el suministro brindando seguridad, transparencia y calidad.',
+    color: 'from-teal-500 to-emerald-500',
   },
 ];
 
@@ -43,93 +54,76 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-teal-50 text-teal-700 rounded-full text-sm font-semibold mb-4">
             Sobre Nosotros
           </span>
-          <h2 className="section-heading">
-            Más de <span className="gradient-text">20 Años</span> Cuidando tu Salud
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-gray-900 mb-4">
+            Más de <span className="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">20 Años</span> Cuidando tu Salud
           </h2>
-          <p className="section-subheading">
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             Grupo Health Care fue creado con el propósito de promover la cultura de la salud
             y su valor intrínseco en la formación de una sociedad productiva.
           </p>
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Image/Infographic */}
+        <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
+          {/* Timeline - Modern Design */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
           >
-            <div className="relative bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl p-8 overflow-hidden">
-              {/* Decorative Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <svg className="w-full h-full" viewBox="0 0 100 100">
-                  <pattern id="dots" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1" fill="white" />
-                  </pattern>
-                  <rect x="0" y="0" width="100%" height="100%" fill="url(#dots)" />
-                </svg>
-              </div>
+            <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8">Nuestra Historia</h3>
 
-              <div className="relative z-10 text-white">
-                <h3 className="text-2xl font-bold mb-6">Nuestra Historia</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg font-bold">2004</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Fundación</h4>
-                      <p className="text-white/80 text-sm">Iniciamos con la visión de transformar la atención médica en México.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg font-bold">2010</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Expansión</h4>
-                      <p className="text-white/80 text-sm">Ampliamos nuestros servicios a nivel nacional.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg font-bold">2020</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Innovación Digital</h4>
-                      <p className="text-white/80 text-sm">Lanzamiento de nuestra plataforma digital para profesionales de la salud.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg font-bold">Hoy</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">Líderes en Innovación</h4>
-                      <p className="text-white/80 text-sm">Continuamos siendo referentes en servicios médico-hospitalarios.</p>
-                    </div>
-                  </div>
+              <div className="relative">
+                {/* Vertical Line */}
+                <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-teal-500 via-cyan-500 to-blue-500" />
+
+                <div className="space-y-8">
+                  {timeline.map((item, index) => (
+                    <motion.div
+                      key={item.year}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.3 + index * 0.15 }}
+                      className="relative pl-10"
+                    >
+                      {/* Circle Dot */}
+                      <div className="absolute left-0 top-1 w-6 h-6 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full shadow-lg border-4 border-white" />
+
+                      {/* Content */}
+                      <div>
+                        <span className="inline-block px-3 py-1 bg-teal-50 text-teal-700 rounded-full text-sm font-bold mb-2">
+                          {item.year}
+                        </span>
+                        <h4 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h4>
+                        <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </div>
 
-            {/* Floating Card */}
-            <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 max-w-xs">
-              <div className="flex items-center space-x-4">
-                <div className="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center">
-                  <Target className="w-7 h-7 text-primary-600" />
+            {/* Office Location Card - Separate Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.8 }}
+              className="mt-6 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl p-6 shadow-xl"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+                  <MapPin className="w-7 h-7 text-white" />
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-secondary-900">Ciudad de México</div>
-                  <div className="text-secondary-600 text-sm">Sede Principal</div>
+                <div className="text-white">
+                  <h4 className="text-xl font-bold">Ciudad de México</h4>
+                  <p className="text-white/80 text-sm">Sede Principal • Polanco</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Mission & Vision */}
@@ -137,34 +131,46 @@ export default function About() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-8"
+            className="space-y-6"
           >
-            <div className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-primary-500">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                  <Target className="w-6 h-6 text-primary-600" />
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-shadow">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <Target className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-secondary-900">Nuestra Misión</h3>
+                <h3 className="text-xl font-bold text-gray-900">Nuestra Misión</h3>
               </div>
-              <p className="text-secondary-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 Especializados en el desarrollo e innovación de servicios médico-hospitalarios,
                 siempre buscando el beneficio del paciente. Aseguramos el suministro brindando
                 seguridad, transparencia y calidad en cada servicio que ofrecemos.
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-accent-500">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center">
-                  <Eye className="w-6 h-6 text-accent-600" />
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-shadow">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <Eye className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-secondary-900">Nuestra Visión</h3>
+                <h3 className="text-xl font-bold text-gray-900">Nuestra Visión</h3>
               </div>
-              <p className="text-secondary-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 Ser el referente nacional en innovación de servicios de salud, creando un espacio
                 donde cada individuo tenga acceso a servicios de salud de alta calidad, promoviendo
                 una cultura de bienestar en toda la sociedad mexicana.
               </p>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 text-center">
+                <div className="text-3xl font-bold text-teal-600 mb-1">20+</div>
+                <div className="text-sm text-gray-600">Años de experiencia</div>
+              </div>
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 text-center">
+                <div className="text-3xl font-bold text-cyan-600 mb-1">CDMX</div>
+                <div className="text-sm text-gray-600">Sede principal</div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -175,7 +181,7 @@ export default function About() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <h3 className="text-2xl font-bold text-center text-secondary-900 mb-12">
+          <h3 className="text-2xl font-bold text-center text-gray-900 mb-12">
             Nuestros Valores
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -185,13 +191,13 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.7 + index * 0.1 }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2"
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 border border-gray-100"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className={`w-14 h-14 bg-gradient-to-br ${value.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
                   <value.icon className="w-7 h-7 text-white" />
                 </div>
-                <h4 className="text-lg font-bold text-secondary-900 mb-2">{value.title}</h4>
-                <p className="text-secondary-600 text-sm">{value.description}</p>
+                <h4 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>

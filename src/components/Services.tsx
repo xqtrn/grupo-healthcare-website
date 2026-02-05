@@ -21,36 +21,28 @@ const services = [
     title: 'Hospitales',
     description: 'Desarrollo e innovación de servicios médico-hospitalarios de vanguardia para instituciones de salud.',
     features: ['Gestión integral', 'Optimización de recursos', 'Tecnología avanzada'],
-    color: 'from-blue-500 to-blue-600',
-    bgColor: 'bg-blue-50',
-    iconColor: 'text-blue-600',
+    color: 'from-teal-500 to-cyan-500',
   },
   {
     icon: Stethoscope,
     title: 'Médicos',
     description: 'Plataforma especializada que conecta a profesionales de la salud con recursos y contenido de alta especialidad.',
     features: ['Contenido especializado', 'Red profesional', 'Actualización continua'],
-    color: 'from-primary-500 to-primary-600',
-    bgColor: 'bg-primary-50',
-    iconColor: 'text-primary-600',
+    color: 'from-blue-500 to-indigo-500',
   },
   {
     icon: Pill,
     title: 'Industria Farmacéutica',
     description: 'Aliado eficiente para comunicar hallazgos y avances médicos con estrategias sólidas y éticas.',
     features: ['Estrategias de marketing', 'Comunicación ética', 'Estudios reconocidos'],
-    color: 'from-purple-500 to-purple-600',
-    bgColor: 'bg-purple-50',
-    iconColor: 'text-purple-600',
+    color: 'from-violet-500 to-purple-500',
   },
   {
     icon: Smartphone,
     title: 'App Móvil GHC',
     description: 'Aplicación que facilita procesos médico-hospitalarios y brinda contenido relevante a doctores.',
     features: ['Procesos ágiles', 'Contenido exclusivo', 'Acceso 24/7'],
-    color: 'from-emerald-500 to-emerald-600',
-    bgColor: 'bg-emerald-50',
-    iconColor: 'text-emerald-600',
+    color: 'from-emerald-500 to-teal-500',
   },
 ];
 
@@ -76,7 +68,7 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-teal-50 text-teal-700 rounded-full text-sm font-semibold mb-4">
             Nuestros Servicios
           </span>
           <h2 className="section-heading">

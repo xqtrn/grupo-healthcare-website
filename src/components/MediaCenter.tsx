@@ -214,55 +214,43 @@ export default function MediaCenter() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-8"
         >
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
-            {/* Category Filter */}
-            <div className="flex flex-wrap gap-2">
-              {categories.slice(0, 10).map((category) => (
+          {/* Category Filter - Horizontal Scroll on Mobile */}
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 pb-4">
+            <div className="flex gap-2 min-w-max">
+              {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  className={`px-4 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-primary-500 text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-lg'
+                      : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'
                   }`}
                 >
                   {category}
                 </button>
               ))}
-              {categories.length > 10 && (
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => handleCategoryChange(e.target.value)}
-                  className="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 border-none cursor-pointer"
-                >
-                  <option value="">Más categorías...</option>
-                  {categories.slice(10).map((category) => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
-              )}
             </div>
+          </div>
 
-            {/* View Toggle & Count */}
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">
-                {filteredVideos.length} videos
-              </span>
-              <div className="flex bg-gray-100 rounded-lg p-1">
-                <button
-                  onClick={() => setViewMode('grid')}
-                  className={`p-2 rounded-md transition-all ${viewMode === 'grid' ? 'bg-white shadow' : ''}`}
-                >
-                  <Grid className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setViewMode('list')}
-                  className={`p-2 rounded-md transition-all ${viewMode === 'list' ? 'bg-white shadow' : ''}`}
-                >
-                  <List className="w-4 h-4" />
-                </button>
-              </div>
+          {/* View Toggle & Count */}
+          <div className="flex items-center justify-between mt-4">
+            <span className="text-sm font-medium text-gray-600">
+              {filteredVideos.length} videos encontrados
+            </span>
+            <div className="flex bg-gray-100 rounded-xl p-1.5 shadow-inner">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-3 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white shadow-md text-teal-600' : 'text-gray-500 hover:text-gray-700'}`}
+              >
+                <Grid className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-3 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white shadow-md text-teal-600' : 'text-gray-500 hover:text-gray-700'}`}
+              >
+                <List className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </motion.div>
